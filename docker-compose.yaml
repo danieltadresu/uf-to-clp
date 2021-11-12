@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    volumes: 
+      - data:/data/db
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+  api:
+    build: ./conversion-api
+    ports:
+      - '80:80'
+    depends_on:
+      - postgres
+
+volumes: 
+  data:
